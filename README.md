@@ -1,9 +1,13 @@
-# xAI Plugin Marketplace
+# Woodstock Plugin Marketplace
 
-The official catalog of plugins for Grok Build. This repo is an index that points at plugin sources so Grok Build can browse, install, and update them.
+The official catalog of plugins for Woodstock MCP, maintained by [Woodstock](https://woodstock.co) (woodstock-tokyo). This repo is an index that points at plugin sources so MCP-compatible clients can browse, install, and update them.
+
+## About Woodstock MCP
+
+[Woodstock MCP](https://github.com/woodstock-tokyo/woodstock-mcp-gateway) (`woodstock-mcp`) is the MCP gateway for the Woodstock stock-trading service. It exposes the platform over the Model Context Protocol so AI agents can work with Woodstock data and workflows — account and balance information, deposits and withdrawals, portfolio, market data, and trading tools (all monetary values are JPY-denominated). Plugins in this marketplace bundle the Woodstock MCP server configuration together with skills, commands, and agents that make AI clients effective at Woodstock investment workflows.
 
 > [!WARNING]
-> Third-party plugins listed here or other third-party materials are solely developed or provided by their respective authors, not xAI. xAI does not author, control, endorse, or verify third-party plugins or materials, makes no guarantees about their security, functionality, fitness, content, outputs, or data practices for any purpose, and disclaims all liability for any damages, losses, claims, or harms related to your use of any third-party plugins or materials. xAI provides plugins or materials AS-IS, without any express or implied warranties, and plugins or materials may execute code and access data on your system — install and use them at your own risk. Each plugin is governed by its own license and terms. xAI has its own [Terms of Service](https://x.ai/legal/terms-of-service) and [Privacy Policy](https://x.ai/legal/privacy-policy).
+> Third-party plugins listed here or other third-party materials are solely developed or provided by their respective authors, not Woodstock. Woodstock does not author, control, endorse, or verify third-party plugins or materials, makes no guarantees about their security, functionality, fitness, content, outputs, or data practices for any purpose, and disclaims all liability for any damages, losses, claims, or harms related to your use of any third-party plugins or materials. Plugins or materials are provided AS-IS, without any express or implied warranties, and plugins or materials may execute code and access data on your system — install and use them at your own risk. Each plugin is governed by its own license and terms.
 
 ## Repo layout
 
@@ -11,12 +15,12 @@ The official catalog of plugins for Grok Build. This repo is an index that point
 |---|---|
 | `.grok-plugin/marketplace.json` | The catalog index — the source of truth |
 | `.grok-plugin/plugin-index.json` | Generated component catalog — never hand-edit |
-| `plugins/` | First-party plugins owned and maintained by xAI |
+| `plugins/` | First-party plugins owned and maintained by Woodstock |
 | `external_plugins/` | Third-party plugins |
 
 Every plugin must have a corresponding entry in `.grok-plugin/marketplace.json`. A plugin's ownership determines where it lives:
 
-- **First-party** (`plugins/`) — plugins authored and maintained by xAI, vendored in this repo.
+- **First-party** (`plugins/`) — plugins authored and maintained by Woodstock, vendored in this repo.
 - **Third-party** (`external_plugins/`) — plugins owned by an external party. Vendor a local copy here, or reference the upstream repo directly with a remote source (see below).
 
 ## What a plugin is
@@ -93,7 +97,7 @@ Both source types are just an entry appended to the `plugins` array in `.grok-pl
 
 ### SHA pinning (required for remote sources)
 
-Every `url` source must pin a full 40-character lowercase commit `sha`. Without a pin, a vendor force-push or repo compromise would silently ship new code to everyone who installs or updates the plugin. Grok Build re-verifies `git rev-parse HEAD == sha` after cloning.
+Every `url` source must pin a full 40-character lowercase commit `sha`. Without a pin, a vendor force-push or repo compromise would silently ship new code to everyone who installs or updates the plugin. The installer re-verifies `git rev-parse HEAD == sha` after cloning.
 
 Find the commit to pin:
 
